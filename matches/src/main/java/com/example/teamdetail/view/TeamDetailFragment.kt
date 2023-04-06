@@ -30,7 +30,7 @@ class TeamDetailFragment : BaseFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = getDataBinding(inflater, container, R.layout.fragment_matches)
+        binding = getDataBinding(inflater, container, R.layout.fragment_team_detail)
         return binding.root
     }
 

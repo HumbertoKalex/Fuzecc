@@ -46,7 +46,6 @@ dependencies {
     implementation project(':matches')
 
     implementation AndroidLibs.core
-    implementation AndroidLibs.appcompat
     implementation AndroidLibs.material
     implementation AndroidLibs.constraint
     implementation AndroidLibs.navigation
