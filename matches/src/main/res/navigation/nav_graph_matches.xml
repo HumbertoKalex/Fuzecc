@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_matches"
+    app:startDestination="@id/matchesFragment">
+
+    <fragment
+        android:id="@+id/matchesFragment"
+        android:name="com.example.matches.view.MatchesFragment"
+        android:label="MatchesFragment"
+        tools:layout="@layout/fragment_matches">
+
+        <action android:id="@+id/action_matchesFragment_to_teams_fragment"
+            app:destination="@+id/teamsFragment">
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/teamsFragment"
+        android:name="com.example.teamdetail.view.TeamDetailFragment"
+        android:label="TeamsFragment"
+        tools:layout="@layout/fragment_team_detail">
+        <action android:id="@+id/startMyFragment"
+            app:destination="@+id/myFragment">
+            <argument
+                android:name="myArg"
+                app:argType="integer"
+                android:defaultValue="1" />
+        </action>
+    </fragment>
+
+</navigation>

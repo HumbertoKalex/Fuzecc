@@ -1,0 +1,44 @@
+plugins {
+    id("com.android.library")
+    id("org.jetbrains.kotlin.android")
+    id ("kotlin-android-extensions")
+    id ("kotlin-kapt")
+}
+
+android {
+    namespace = "com.example.utils"
+    compileSdk = Versions.compileSdk
+
+    defaultConfig {
+        minSdk = Versions.minSdk
+        targetSdk = Versions.compileSdk
+
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
+    }
+
+    buildTypes {
+        release {
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+        }
+
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+    buildFeatures {
+        viewBinding = true
+        dataBinding = true
+    }
+}
+
+dependencies {
+    implementation(AndroidLibs.core)
+    implementation(AndroidLibs.appcompat)
+    implementation Libs.gson
+    implementation Libs.glide
+}

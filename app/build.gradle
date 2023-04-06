@@ -1,0 +1,81 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
+}
+
+android {
+    namespace 'com.example.fuzecc'
+    compileSdk Versions.compileSdk
+
+    defaultConfig {
+        applicationId "com.example.fuzecc"
+        minSdk Versions.minSdk
+        targetSdk Versions.compileSdk
+        versionCode AppVersions.versionCode
+        versionName AppVersions.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        viewBinding = true
+        dataBinding = true
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation project(':remote')
+    implementation project(':splash')
+    implementation project(':utils')
+    implementation project(':matches')
+
+    implementation AndroidLibs.core
+    implementation AndroidLibs.appcompat
+    implementation AndroidLibs.material
+    implementation AndroidLibs.constraint
+    implementation AndroidLibs.navigation
+    implementation AndroidLibs.navigationUi
+    implementation AndroidLibs.recycler
+    implementation AndroidLibs.lifecycle
+    implementation AndroidLibs.lifecyclemodel
+    implementation AndroidLibs.coroutineCore
+    implementation AndroidLibs.coroutineAndroid
+    implementation Libs.dagger
+    implementation Libs.daggerAndroid
+    implementation Libs.daggerSupport
+    kapt Libs.daggerPrecessor
+    kapt Libs.daggerCompiler
+
+    implementation Libs.gson
+    implementation Libs.retrofit
+    implementation Libs.retrofitConverterGson
+    implementation Libs.retrofitCoroutineAdapter
+    implementation Libs.okHttpInterceptor
+    implementation Libs.okHttp
+    implementation Libs.glide
+    implementation Libs.koin
+    implementation Libs.koinScope
+    implementation Libs.koinCompat
+    implementation Libs.koinJetpack
+    implementation Libs.koinNav
+
+    implementation AndroidLibs.junit
+    implementation AndroidLibs.androidxJunit
+    implementation AndroidLibs.espresso
+}
