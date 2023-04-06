@@ -43,6 +43,7 @@ class TeamDetailFragment : BaseFragment() {
         binding.titleTeamLeague.text=match?.league?.name
         binding.txtTeamHour.text=match?.scheduledAt
         observeActions()
+        viewModel.fetchTeam(match?.opponents?.first()?.opponent?.name ?:"",match?.opponents?.first()?.opponent?.name ?:"")
     }
 
     private fun observeActions() {
