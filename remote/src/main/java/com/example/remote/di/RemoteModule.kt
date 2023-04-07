@@ -3,7 +3,6 @@ package com.example.remote.di
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
-import okhttp3.Request
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.core.module.Module
 import org.koin.core.qualifier.named
@@ -32,11 +31,13 @@ fun createRemoteModule(
                 readTimeout(TIMEOUT, TimeUnit.SECONDS)
                 writeTimeout(TIMEOUT, TimeUnit.SECONDS)
             }
-            .addInterceptor {chain ->
+            .addInterceptor { chain ->
                 val request = chain.request()
                     .newBuilder()
-                    .addHeader("Authorization",
-                        "Bearer ${"-ATCA_1Xhp3vLcDNbFXzaO38u9nhrwUjszV7XDRRkwVYpsh5vpk"}")
+                    .addHeader(
+                        "Authorization",
+                        "Bearer ${"-ATCA_1Xhp3vLcDNbFXzaO38u9nhrwUjszV7XDRRkwVYpsh5vpk"}"
+                    )
                     .build()
                 chain.proceed(request)
             }

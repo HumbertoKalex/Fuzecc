@@ -6,13 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.example.matches.R
-import com.example.matches.databinding.FragmentTeamDetailBinding
 import com.example.matches.data.models.Matches
+import com.example.matches.databinding.FragmentTeamDetailBinding
 import com.example.teamdetail.data.models.PlayerDetail
 import com.example.teamdetail.view.action.TeamsAction
 import com.example.teamdetail.view.adapter.Team2DetailAdapter
 import com.example.teamdetail.view.adapter.TeamDetailAdapter
 import com.example.utils.core.BaseFragment
+import com.example.utils.view.convertToCurrentTimezone
 import com.example.utils.view.load
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -36,20 +37,29 @@ class TeamDetailFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.imgOpponent1.load(match?.opponents?.first()?.opponent?.imageUrl ?: "", com.example.utils.R.drawable.place_holder)
-        binding.imgOpponent2.load(match?.opponents?.get(1)?.opponent?.imageUrl ?: "", com.example.utils.R.drawable.place_holder)
-        binding.titleOpponent1.text=match?.opponents?.first()?.opponent?.name
-        binding.titleOpponent2.text=match?.opponents?.get(1)?.opponent?.name
-        binding.titleTeamLeague.text=match?.league?.name
-        binding.txtTeamHour.text=match?.scheduledAt
+        binding.imgOpponent1.load(
+            match?.opponents?.firstOrNull()?.opponent?.imageUrl ?: "",
+            com.example.utils.R.drawable.place_holder
+        )
+        binding.imgOpponent2.load(
+            match?.opponents?.getOrNull(1)?.opponent?.imageUrl ?: "",
+            com.example.utils.R.drawable.place_holder
+        )
+        binding.titleOpponent1.text = match?.opponents?.firstOrNull()?.opponent?.name
+        binding.titleOpponent2.text = match?.opponents?.getOrNull(1)?.opponent?.name
+        binding.titleTeamLeague.text = match?.league?.name
+        binding.txtTeamHour.text = match?.scheduledAt?.convertToCurrentTimezone()
         observeActions()
-        viewModel.fetchTeam(match?.opponents?.first()?.opponent?.name ?:"",match?.opponents?.first()?.opponent?.name ?:"")
+        viewModel.fetchTeam(
+            match?.opponents?.firstOrNull()?.opponent?.name ?: "",
+            match?.opponents?.getOrNull(1)?.opponent?.name ?: ""
+        )
     }
 
     private fun observeActions() {
         viewModel.teamsAction.observe(viewLifecycleOwner) {
             when (it) {
-                is TeamsAction.TeamsLoaded -> setAdapters(it.playerDetail,it.player2Detail)
+                is TeamsAction.TeamsLoaded -> setAdapters(it.playerDetail, it.player2Detail)
 
                 is TeamsAction.Error -> showError(it.msg ?: "Generic Error")
             }
@@ -57,6 +67,8 @@ class TeamDetailFragment : BaseFragment() {
     }
 
     private fun setAdapters(playerDetail: List<PlayerDetail>?, players2Detail: List<PlayerDetail>?) {
+        binding.recyclerTeamDetail.visibility = View.VISIBLE
+        binding.recyclerTeam2Detail.visibility = View.VISIBLE
         teamDetailAdapter = TeamDetailAdapter()
         team2DetailAdapter = Team2DetailAdapter()
         teamDetailAdapter.players = playerDetail
@@ -65,7 +77,6 @@ class TeamDetailFragment : BaseFragment() {
         binding.recyclerTeam2Detail.adapter = team2DetailAdapter
 
     }
-
 
     private fun showError(error: String) =
         Toast.makeText(context, error, Toast.LENGTH_SHORT)

@@ -4,156 +4,146 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.example.teamdetail.view.TeamDetailViewModel" />
     </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/background_app">
 
-        <androidx.core.widget.NestedScrollView
-            android:layout_width="match_parent"
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgArrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/arrow"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/titleTeamLeague"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="3sp"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/imgArrow"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imgArrow"
+            tools:text="Time1" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgOpponent1"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintEnd_toStartOf="@+id/txtTeamVs"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titleTeamLeague"
+            tools:background="@drawable/place_holder" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgOpponent2"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/txtTeamVs"
+            app:layout_constraintTop_toBottomOf="@+id/titleTeamLeague"
+            tools:background="@drawable/place_holder" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/titleOpponent1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="@+id/imgOpponent1"
+            app:layout_constraintStart_toStartOf="@+id/imgOpponent1"
+            app:layout_constraintTop_toBottomOf="@+id/imgOpponent1"
+            tools:text="Time1" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/titleOpponent2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="@+id/imgOpponent2"
+            app:layout_constraintStart_toStartOf="@+id/imgOpponent2"
+            app:layout_constraintTop_toBottomOf="@+id/imgOpponent2"
+            tools:text="Time2" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtTeamVs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/vs"
+            android:textColor="#80FFFFFF"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@id/titleOpponent1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imgOpponent1" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtTeamHour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:text="@string/vs"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titleOpponent1"
+            tools:text="Hoje, 21:00" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerTeamDetail"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="6dp"
+            android:gravity="top"
+            android:visibility="visible"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/teamDivider"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtTeamHour"
+            app:spanCount="1" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerTeam2Detail"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="6dp"
+            android:gravity="top"
+            android:visibility="visible"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/teamDivider"
+            app:layout_constraintTop_toBottomOf="@id/txtTeamHour"
+            app:spanCount="1" />
+
+        <View
+            android:id="@+id/teamDivider"
+            android:layout_width="1dp"
             android:layout_height="match_parent"
-            android:background="@color/background_app"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@id/txtTeamHour" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/imgArrow"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="24dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:background="@drawable/arrow" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/titleTeamLeague"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:lineSpacingExtra="3sp"
-                    android:textColor="@color/white"
-                    android:textSize="18sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/imgArrow"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/imgArrow"
-                    tools:text="Time1" />
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/imgOpponent1"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_marginTop="24dp"
-                    app:layout_constraintEnd_toStartOf="@+id/txtTeamVs"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/titleTeamLeague"
-                    tools:background="@drawable/place_holder" />
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/imgOpponent2"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_marginTop="24dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/txtTeamVs"
-                    app:layout_constraintTop_toBottomOf="@+id/titleTeamLeague"
-                    tools:background="@drawable/place_holder" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/titleOpponent1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:textColor="#FFFFFF"
-                    android:textSize="12sp"
-                    app:layout_constraintEnd_toEndOf="@+id/imgOpponent1"
-                    app:layout_constraintStart_toStartOf="@+id/imgOpponent1"
-                    app:layout_constraintTop_toBottomOf="@+id/imgOpponent1"
-                    tools:text="Time1" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/titleOpponent2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:textColor="#FFFFFF"
-                    android:textSize="12sp"
-                    app:layout_constraintEnd_toEndOf="@+id/imgOpponent2"
-                    app:layout_constraintStart_toStartOf="@+id/imgOpponent2"
-                    app:layout_constraintTop_toBottomOf="@+id/imgOpponent2"
-                    tools:text="Time2" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/txtTeamVs"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/vs"
-                    android:textColor="#80FFFFFF"
-                    android:textSize="12sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/imgOpponent1"
-                    app:layout_constraintBottom_toBottomOf="@id/titleOpponent1"/>
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/txtTeamHour"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/vs"
-                    android:textColor="@color/white"
-                    android:textSize="12sp"
-                    android:textStyle="bold"
-                    android:layout_marginTop="18dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/titleOpponent1"
-                    tools:text="Hoje, 21:00"/>
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerTeamDetail"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:gravity="center_horizontal|center_vertical"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="@id/teamDivider"
-                    app:layout_constraintTop_toBottomOf="@id/txtTeamHour"
-                    app:spanCount="1"/>
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerTeam2Detail"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:gravity="center_horizontal|center_vertical"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@id/teamDivider"
-                    app:layout_constraintTop_toBottomOf="@id/txtTeamHour"
-                    app:spanCount="1"/>
-
-                <View
-                    android:id="@+id/teamDivider"
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:background="?android:attr/listDivider"
-                    app:layout_constraintTop_toBottomOf="@id/txtTeamHour"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"/>
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </androidx.core.widget.NestedScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

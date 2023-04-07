@@ -8,9 +8,7 @@ sealed class SafeResponse<out T>(val status: Status) {
     object NetworkError : SafeResponse<Nothing>(Status.NETWORK_ERROR)
     data class Success<out T>(val value: T) : SafeResponse<T>(Status.SUCCESS)
     data class GenericError(
-        val code: Int? = null,
-        val throwable: Throwable? = null,
-        val errorBody: ErrorResponse? = null
+        val code: Int? = null, val throwable: Throwable? = null, val errorBody: ErrorResponse? = null
     ) : SafeResponse<Nothing>(Status.ERROR)
 }
 
@@ -38,7 +36,5 @@ private fun <T> convertToErrorBody(throwable: HttpException): SafeResponse<T> {
 }
 
 enum class Status {
-    SUCCESS,
-    ERROR,
-    NETWORK_ERROR,
+    SUCCESS, ERROR, NETWORK_ERROR,
 }

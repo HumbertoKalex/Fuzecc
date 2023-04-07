@@ -2,4 +2,5 @@
 <resources>
     <string name="partidas">Partidas</string>
     <string name="vs">VS</string>
+    <string name="agora">Agora</string>
 </resources>

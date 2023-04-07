@@ -8,27 +8,26 @@ import com.example.teamdetail.data.models.PlayerDetail
 import com.example.utils.R
 import com.example.utils.view.load
 
-class TeamDetailAdapter: RecyclerView.Adapter<TeamDetailAdapter.ViewHolder>() {
+class TeamDetailAdapter : RecyclerView.Adapter<TeamDetailAdapter.ViewHolder>() {
 
     var players: List<PlayerDetail>? = null
-    set(value) {
-        field = value
-        notifyDataSetChanged()
-    }
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
 
-    inner class ViewHolder(private val binding: AdapterTeamDetailBinding) :
-        RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(private val binding: AdapterTeamDetailBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(player: PlayerDetail) = with(binding) {
             playerDetail = player
             imgPlayer.load(player.imageUrl ?: "", R.drawable.place_holder_team)
+            executePendingBindings()
 
         }
     }
 
     override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
+        parent: ViewGroup, viewType: Int
     ): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = AdapterTeamDetailBinding.inflate(inflater, parent, false)

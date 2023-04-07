@@ -4,6 +4,6 @@ import com.example.teamdetail.data.models.Team
 
 interface TeamDetailRepository {
 
-    suspend fun fetchTeam(name: String): Team
+    suspend fun fetchTeam(name: String): List<Team>
 
 }

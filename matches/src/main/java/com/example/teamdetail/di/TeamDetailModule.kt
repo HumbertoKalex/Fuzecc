@@ -1,6 +1,5 @@
 package com.example.teamdetail.di
 
-import com.example.matches.view.MatchesViewModel
 import com.example.teamdetail.domain.TeamDetailUseCase
 import com.example.teamdetail.domain.TeamDetailUseCaseImpl
 import com.example.teamdetail.repository.TeamDetailApi

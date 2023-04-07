@@ -23,8 +23,7 @@ class MatchesViewModel(
                 is SafeResponse.Success -> {
                     MatchesAction.MatchesLoaded(response.value).run()
                 }
-                is SafeResponse.GenericError -> MatchesAction.Error(response.errorBody?.error)
-                    .run()
+                is SafeResponse.GenericError -> MatchesAction.Error(response.errorBody?.error).run()
                 is SafeResponse.NetworkError -> MatchesAction.Error().run()
                 else -> {}
             }

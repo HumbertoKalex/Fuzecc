@@ -4,9 +4,8 @@ import com.example.teamdetail.data.models.Team
 
 class TeamDetailRepositoryImpl(
     private val temDetailService: TeamDetailApi
-    ) : TeamDetailRepository {
+) : TeamDetailRepository {
 
-    override suspend fun fetchTeam(name: String): Team =
-        temDetailService.getTeam(name)
+    override suspend fun fetchTeam(name: String): List<Team> = temDetailService.getTeam(name)
 
 }

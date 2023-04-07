@@ -7,6 +7,6 @@ import retrofit2.http.Query
 interface TeamDetailApi {
 
     @GET("/teams")
-    suspend fun getTeam(@Query("search[name]") name: String): Team
+    suspend fun getTeam(@Query("search[name]") name: String): List<Team>
 
 }

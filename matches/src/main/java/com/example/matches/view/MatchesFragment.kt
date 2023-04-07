@@ -8,8 +8,8 @@ import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import com.example.matches.R
-import com.example.matches.databinding.FragmentMatchesBinding
 import com.example.matches.data.models.Matches
+import com.example.matches.databinding.FragmentMatchesBinding
 import com.example.matches.view.action.MatchesAction
 import com.example.matches.view.adapter.MatchesAdapter
 import com.example.utils.core.BaseFragment

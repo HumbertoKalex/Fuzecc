@@ -2,5 +2,7 @@
 <resources>
     <color name="background_app">#252525</color>
     <color name="background_card">#272639</color>
+    <color name="red">#F42A35</color>
+    <color name="grey">#33FAFAFA</color>
     <color name="white">#FFFFFF</color>
 </resources>

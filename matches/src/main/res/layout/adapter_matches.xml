@@ -34,6 +34,26 @@
                 android:layout_height="200dp"
                 android:background="@color/background_card">
 
+                <LinearLayout
+                    android:id="@+id/linearBadge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxHeight="43dp"
+                    android:maxWidth="25dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" >
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/txtBadge"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textStyle="bold"
+                        android:layout_margin="8dp"
+                        android:textSize="8dp"
+                        android:textColor="@color/white"
+                        tools:text="Agora"/>
+
+                </LinearLayout>
+
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/imgOpponent1"
                     android:layout_width="60dp"
@@ -64,7 +84,7 @@
                     app:layout_constraintEnd_toEndOf="@+id/imgOpponent1"
                     app:layout_constraintStart_toStartOf="@+id/imgOpponent1"
                     app:layout_constraintTop_toBottomOf="@+id/imgOpponent1"
-                    android:text="@{match.opponents.get(0).opponent.name, default= Team1}"
+                    android:text="@{match.opponents[0].opponent.name, default= Team1}"
                     tools:text="Time1" />
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -77,7 +97,7 @@
                     app:layout_constraintEnd_toEndOf="@+id/imgOpponent2"
                     app:layout_constraintStart_toStartOf="@+id/imgOpponent2"
                     app:layout_constraintTop_toBottomOf="@+id/imgOpponent2"
-                    android:text="@{match.opponents.get(1).opponent.name, default= Team2}"
+                    android:text="@{match.opponents[1].opponent.name, default= Team2}"
                     tools:text="Time2" />
 
                 <androidx.appcompat.widget.AppCompatTextView

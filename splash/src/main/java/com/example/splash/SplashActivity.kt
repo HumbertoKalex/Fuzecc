@@ -1,8 +1,8 @@
 package com.example.splash
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 
@@ -10,14 +10,14 @@ class SplashActivity : AppCompatActivity() {
 
     private lateinit var navController: NavController
 
-    private lateinit var timer : CountDownTimer
+    private lateinit var timer: CountDownTimer
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
         navController = findNavController(R.id.nav_host_intro)
 
-        timer = object: CountDownTimer(4000, 1) {
+        timer = object : CountDownTimer(5000, 1) {
             override fun onTick(millisUntilFinished: Long) {}
 
             override fun onFinish() {
