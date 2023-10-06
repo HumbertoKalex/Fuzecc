@@ -12,7 +12,11 @@
         tools:layout="@layout/fragment_matches">
 
         <action android:id="@+id/action_matchesFragment_to_teams_fragment"
-            app:destination="@+id/teamsFragment">
+            app:destination="@+id/teamsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right">
         </action>
     </fragment>
 

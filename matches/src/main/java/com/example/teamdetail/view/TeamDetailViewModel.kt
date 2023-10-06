@@ -22,6 +22,7 @@ class TeamDetailViewModel(
                 is SafeResponse.Success -> {
                     fetchTeam2(response.value.first(), name2)
                 }
+
                 is SafeResponse.GenericError -> TeamsAction.Error(response.errorBody?.error).run()
                 is SafeResponse.NetworkError -> TeamsAction.Error().run()
             }
@@ -32,10 +33,13 @@ class TeamDetailViewModel(
         viewModelScope.launch {
             when (val response = safeRequest { teamDetailUseCase.fetchTeam(name) }) {
                 is SafeResponse.Success -> {
-                    TeamsAction.TeamsLoaded(team1.players, response.value.first().players).run()
+                    TeamsAction.TeamsLoaded(
+                        team1.players ?: listOf(),
+                        response.value.first().players ?: listOf()
+                    ).run()
                 }
-                is SafeResponse.GenericError -> TeamsAction.Error(response.errorBody?.error)
-                    .run()
+
+                is SafeResponse.GenericError -> TeamsAction.Error(response.errorBody?.error).run()
                 is SafeResponse.NetworkError -> TeamsAction.Error().run()
             }
         }

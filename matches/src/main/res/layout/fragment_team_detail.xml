@@ -113,33 +113,27 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginEnd="6dp"
-            android:gravity="top"
-            android:visibility="visible"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/teamDivider"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/txtTeamHour"
-            app:spanCount="1" />
+            app:layout_constraintTop_toBottomOf="@id/txtTeamHour" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerTeam2Detail"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="6dp"
-            android:gravity="top"
-            android:visibility="visible"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/teamDivider"
-            app:layout_constraintTop_toBottomOf="@id/txtTeamHour"
-            app:spanCount="1" />
+            app:layout_constraintTop_toBottomOf="@id/txtTeamHour" />
 
         <View
             android:id="@+id/teamDivider"
             android:layout_width="1dp"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

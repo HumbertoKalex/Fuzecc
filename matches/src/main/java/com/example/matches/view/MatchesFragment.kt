@@ -59,7 +59,7 @@ class MatchesFragment : BaseFragment() {
                     )
                 )
             }
-            matchesAdapter.matches = matches
+            matchesAdapter.updateMatches(matches)
             binding.recyclerMatches.adapter = matchesAdapter
         }
 

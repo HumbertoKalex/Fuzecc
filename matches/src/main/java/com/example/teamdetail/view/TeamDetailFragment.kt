@@ -8,7 +8,6 @@ import android.widget.Toast
 import com.example.matches.R
 import com.example.matches.data.models.Matches
 import com.example.matches.databinding.FragmentTeamDetailBinding
-import com.example.teamdetail.data.models.PlayerDetail
 import com.example.teamdetail.view.action.TeamsAction
 import com.example.teamdetail.view.adapter.Team2DetailAdapter
 import com.example.teamdetail.view.adapter.TeamDetailAdapter
@@ -20,8 +19,8 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class TeamDetailFragment : BaseFragment() {
 
     private lateinit var binding: FragmentTeamDetailBinding
-    private lateinit var teamDetailAdapter: TeamDetailAdapter
-    private lateinit var team2DetailAdapter: Team2DetailAdapter
+    private val teamDetailAdapter by lazy { TeamDetailAdapter() }
+    private val team2DetailAdapter by lazy { Team2DetailAdapter() }
     private val match: Matches? by lazy {
         arguments?.getSerializable("match") as? Matches
     }
@@ -32,23 +31,13 @@ class TeamDetailFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = getDataBinding(inflater, container, R.layout.fragment_team_detail)
+        setupRecyclerViews()
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.imgOpponent1.load(
-            match?.opponents?.firstOrNull()?.opponent?.imageUrl ?: "",
-            com.example.utils.R.drawable.place_holder
-        )
-        binding.imgOpponent2.load(
-            match?.opponents?.getOrNull(1)?.opponent?.imageUrl ?: "",
-            com.example.utils.R.drawable.place_holder
-        )
-        binding.titleOpponent1.text = match?.opponents?.firstOrNull()?.opponent?.name
-        binding.titleOpponent2.text = match?.opponents?.getOrNull(1)?.opponent?.name
-        binding.titleTeamLeague.text = match?.league?.name
-        binding.txtTeamHour.text = match?.scheduledAt?.convertToCurrentTimezone()
+        setupUI()
         observeActions()
         viewModel.fetchTeam(
             match?.opponents?.firstOrNull()?.opponent?.name ?: "",
@@ -56,29 +45,38 @@ class TeamDetailFragment : BaseFragment() {
         )
     }
 
+    private fun setupUI() {
+        binding.imgOpponent1.load(
+            match?.opponents?.firstOrNull()?.opponent?.imageUrl ?: "",
+            R.drawable.place_cs
+        )
+        binding.imgOpponent2.load(
+            match?.opponents?.getOrNull(1)?.opponent?.imageUrl ?: "",
+             R.drawable.place_cs
+        )
+        binding.titleOpponent1.text = match?.opponents?.firstOrNull()?.opponent?.name
+        binding.titleOpponent2.text = match?.opponents?.getOrNull(1)?.opponent?.name
+        binding.titleTeamLeague.text = match?.league?.name
+        binding.txtTeamHour.text = match?.scheduledAt?.convertToCurrentTimezone()
+    }
+
+    private fun setupRecyclerViews() {
+        binding.recyclerTeamDetail.adapter = teamDetailAdapter
+        binding.recyclerTeam2Detail.adapter = team2DetailAdapter
+    }
+
     private fun observeActions() {
         viewModel.teamsAction.observe(viewLifecycleOwner) {
             when (it) {
-                is TeamsAction.TeamsLoaded -> setAdapters(it.playerDetail, it.player2Detail)
-
+                is TeamsAction.TeamsLoaded -> {
+                    teamDetailAdapter.updatePlayers(it.playerDetail)
+                    team2DetailAdapter.updatePlayers(it.player2Detail)
+                }
                 is TeamsAction.Error -> showError(it.msg ?: "Generic Error")
             }
         }
     }
 
-    private fun setAdapters(playerDetail: List<PlayerDetail>?, players2Detail: List<PlayerDetail>?) {
-        binding.recyclerTeamDetail.visibility = View.VISIBLE
-        binding.recyclerTeam2Detail.visibility = View.VISIBLE
-        teamDetailAdapter = TeamDetailAdapter()
-        team2DetailAdapter = Team2DetailAdapter()
-        teamDetailAdapter.players = playerDetail
-        team2DetailAdapter.players = players2Detail
-        binding.recyclerTeamDetail.adapter = teamDetailAdapter
-        binding.recyclerTeam2Detail.adapter = team2DetailAdapter
-
-    }
-
     private fun showError(error: String) =
-        Toast.makeText(context, error, Toast.LENGTH_SHORT)
-            .show()
+        Toast.makeText(context, error, Toast.LENGTH_SHORT).show()
 }
