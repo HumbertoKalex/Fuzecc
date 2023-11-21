@@ -21,6 +21,7 @@ class TeamDetailViewModel(
             when (val response = safeRequest { teamDetailUseCase.fetchTeam(name) }) {
                 is SafeResponse.Success -> {
                     fetchTeam2(response.value.first(), name2)
+                    fetchTeam(name,name2)
                 }
 
                 is SafeResponse.GenericError -> TeamsAction.Error(response.errorBody?.error).run()
@@ -37,6 +38,7 @@ class TeamDetailViewModel(
                         team1.players ?: listOf(),
                         response.value.first().players ?: listOf()
                     ).run()
+                    TeamsAction.Error(response.errorBody?.error).run()
                 }
 
                 is SafeResponse.GenericError -> TeamsAction.Error(response.errorBody?.error).run()
@@ -46,5 +48,7 @@ class TeamDetailViewModel(
     }
 
     private fun TeamsAction.run() = teamsAction.postValue(this)
+
+    private fun TeamsAction2.run() = teamsAction.postValue(this)
 
 }
