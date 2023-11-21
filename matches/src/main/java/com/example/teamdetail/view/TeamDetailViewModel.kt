@@ -1,5 +1,6 @@
 package com.example.teamdetail.view
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -21,7 +22,7 @@ class TeamDetailViewModel(
             when (val response = safeRequest { teamDetailUseCase.fetchTeam(name) }) {
                 is SafeResponse.Success -> {
                     fetchTeam2(response.value.first(), name2)
-                    fetchTeam(name,name2)
+                    Log.d("Teste","teste")
                 }
 
                 is SafeResponse.GenericError -> TeamsAction.Error(response.errorBody?.error).run()
